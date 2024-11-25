@@ -54,8 +54,8 @@ if not data or not labels:
     print("No se encontraron datos suficientes para entrenar el modelo.")
     exit()
 
-# Verificar las clases únicas en labels
-unique_labels = set(labels)
+# Verificar las clases únicas en labels y ordenarlas alfabéticamente
+unique_labels = sorted(set(labels))
 print(f"Clases únicas encontradas durante el entrenamiento: {unique_labels}")
 
 # Convertir labels a valores numéricos
