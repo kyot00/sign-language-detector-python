@@ -23,7 +23,7 @@ hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3, max
 
 expected_landmarks = 42  # Asegúrate de que este valor sea consistente con el entrenamiento
 
-while True:
+while cap.isOpened():
     data_aux = []
     x_ = []
     y_ = []
@@ -70,8 +70,8 @@ while True:
             print(f"Predicción: {predicted_label} con {confidence:.2f}% de confianza")
 
             # Dibujar el rectángulo y la predicción en el frame
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 4)
-            cv2.putText(frame, f'{predicted_label} ({confidence:.2f}%)', (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3, cv2.LINE_AA)
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
+            cv2.putText(frame, f'{predicted_label} ({confidence:.2f}%)', (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
 
         else:
             print(f"Longitud inesperada de data_aux: {len(data_aux)}")
@@ -85,8 +85,8 @@ while True:
                 mp_drawing_styles.get_default_hand_landmarks_style(),
                 mp_drawing_styles.get_default_hand_connections_style())
 
-    cv2.imshow('frame', frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    cv2.imshow('Frame', frame)
+    if cv2.waitKey(1) & 0xFF == ord('Q'):
         break
 
 cap.release()
